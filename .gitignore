@@ -13,3 +13,4 @@ wheels/
 *.lock
 *.zip
 *.python-version
+*.ipynb
