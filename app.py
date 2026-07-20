@@ -36,7 +36,11 @@ if prompt := st.chat_input("Ask a question about coffee..."):
     with st.chat_message("assistant"):
         with st.spinner("Searching knowledge base..."):
             try:
-                response = st.session_state.assistant.rag(prompt).output_text
+                response = st.session_state.assistant.rag(
+                    prompt,
+                    history=st.session_state.messages
+                ).output_text
+                
                 st.markdown(response)
                 st.session_state.messages.append({"role": "assistant", "content": response})
             except Exception as e:
