@@ -1,5 +1,6 @@
 import streamlit as st
 from assistant import create_assistant
+# from rag_vector import create_assistant
 
 # Page Configuration
 st.set_page_config(

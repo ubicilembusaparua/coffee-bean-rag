@@ -1,3 +1,6 @@
+from minsearch import vector
+
+
 INSTRUCTIONS = """
 You are Barista AI, an expert coffee specialist and guide. Your purpose is to deliver accurate, engaging, and practical coffee knowledge—covering origin profiles, processing methods, bean varieties, brewing ratios, grind sizes, and espresso troubleshooting.
 
@@ -125,3 +128,44 @@ class RAGBase():
         prompt = self.build_prompt(query, search_results)
         response = self.llm(context=prompt, query=query, history=history)
         return response
+    
+
+class RAGPGVector(RAGBase):
+
+    def __init__(self, embedder, conn, **kwargs):
+        super().__init__(index=None, **kwargs)
+        self.embedder = embedder
+        self.conn = conn
+
+    def vec_to_str(self, vector):
+        return "[" + ",".join([str(x) for x in vector]) + "]"
+
+    def search(self, query, num_results=5):
+        query_vector = self.embedder.encode(query, convert_to_tensor=True)
+        query_vector_str = self.vec_to_str(query_vector.tolist())
+        
+        results = self.conn.execute(
+            """
+            SELECT name, origin_1, origin_2, desc_1, desc_2, desc_3, roast, rating, loc_country
+            FROM coffee_reviews
+            ORDER BY embedding <=> %s::vector
+            LIMIT %s
+            """,
+            (query_vector_str, num_results)
+        ).fetchall()
+        
+        return [
+            {
+                "name": row[0],
+                "origin_1": row[1],
+                "origin_2": row[2],
+                "desc_1": row[3],
+                "desc_2": row[4],
+                "desc_3": row[5],
+                "roast": row[6],
+                "rating": row[7],
+                "loc_country": row[8]
+            }
+            for row in results
+        ]
+    
