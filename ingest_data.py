@@ -4,10 +4,14 @@ from minsearch import Index
 def load_data():
 
     df = pd.read_csv('dataset/coffee_analysis.csv')
+    
     cols = df.columns.tolist()
     df.dropna(inplace=True)
     df[['100g_USD', 'rating']] = df[['100g_USD', 'rating']].astype(str)
     docs = df.to_dict(orient='records')
+
+    for idx, item in enumerate(docs):
+        item['id'] = idx
 
     return docs
 

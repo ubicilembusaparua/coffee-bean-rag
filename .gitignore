@@ -14,3 +14,4 @@ wheels/
 *.zip
 *.python-version
 *.ipynb
+models/

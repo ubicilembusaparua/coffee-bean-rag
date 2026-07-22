@@ -1,6 +1,3 @@
-from minsearch import vector
-
-
 INSTRUCTIONS = """
 You are Barista AI, an expert coffee specialist and guide. Your purpose is to deliver accurate, engaging, and practical coffee knowledge—covering origin profiles, processing methods, bean varieties, brewing ratios, grind sizes, and espresso troubleshooting.
 
@@ -93,28 +90,12 @@ class RAGBase():
             context=context
         )
     
-    def llm(self, context, query, history=None):
-        formatted_instructions = self.instructions.format(context=context, query=query)
-
-        # input_messages = [
-        #     {'role': 'developer', 'content': self.instructions},
-        #     {'role': 'user', 'content': prompt}
-        # ]
-
+    def llm(self, prompt):
         input_messages = [
-            {'role': 'developer', 'content': formatted_instructions}
+            {'role': 'developer', 'content': self.instructions},
+            {'role': 'user', 'content': prompt}
         ]
-
-        if history:
-            for message in history:
-                input_messages.append({
-                    'role': message['role'],
-                    'content': message['content']
-                })
-        else:
-            prompt = self.prompt_template.format(question=query, context=context)
-            input_messages.append({'role': 'user', 'content': prompt})
-
+       
         response = self.llm_client.responses.create(
             model = self.model,
             input = input_messages,
@@ -123,10 +104,10 @@ class RAGBase():
         return response
     
 
-    def rag(self, query, history=None):
+    def rag(self, query):
         search_results = self.search(query)
         prompt = self.build_prompt(query, search_results)
-        response = self.llm(context=prompt, query=query, history=history)
+        response = self.llm(prompt)
         return response
     
 
@@ -141,8 +122,8 @@ class RAGPGVector(RAGBase):
         return "[" + ",".join([str(x) for x in vector]) + "]"
 
     def search(self, query, num_results=5):
-        query_vector = self.embedder.encode(query, convert_to_tensor=True)
-        query_vector_str = self.vec_to_str(query_vector.tolist())
+        query_vector = self.embedder.encode(query)
+        query_vector_str = self.vec_to_str(query_vector)
         
         results = self.conn.execute(
             """

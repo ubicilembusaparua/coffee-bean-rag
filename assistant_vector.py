@@ -1,17 +1,18 @@
+import sys
 from rag_app import RAGPGVector
-from sentence_transformers import SentenceTransformer
+from embedder import Embedder
 import psycopg
 from dotenv import load_dotenv
-load_dotenv()  # Load environment variables from .env file
 from openai import OpenAI
-import sys
 
-conn = psycopg.connect(
-    "postgresql://user:pswd@127.0.0.1:5432/coffe-review"
-)
+
 
 def create_assistant():
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    conn = psycopg.connect(
+        "postgresql://user:pswd@127.0.0.1:5432/coffe-review"
+    )
+    load_dotenv()  # Load environment variables from .env file
+    model = Embedder()
 
     return RAGPGVector(
         embedder=model,
