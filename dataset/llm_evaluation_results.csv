@@ -1,0 +1,3 @@
+,hit_rate,mrr,precision
+vector_search,1.0000,0.9624,0.8839
+text_search,0.9667,0.8944,0.7800

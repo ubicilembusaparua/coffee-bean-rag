@@ -77,7 +77,8 @@ class RAGBase():
                 f"Flavor Profile (desc_2): {result['desc_2']}\n"
                 f"Extraction Advice (desc_3): {result['desc_3']}\n"
                 f"Roast Level: {result['roast']}\n"
-                f"Quality Rating: {result['rating']}"
+                f"Quality Rating: {result['rating']}\n"
+                f"Location/Country: {result['loc_country']}\n"
             )
             context_chunks.append(chunk)
 
