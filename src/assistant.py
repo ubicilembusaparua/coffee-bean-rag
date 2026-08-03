@@ -3,7 +3,7 @@ import sys
 from dotenv import load_dotenv
 from openai import OpenAI
 from rag_app import RAGBase
-from scripts.ingest_data import load_data, build_index
+from scripts.load_index_data import load_data, build_index
 
 def create_assistant():
     load_dotenv()  # Load environment variables from .env file
