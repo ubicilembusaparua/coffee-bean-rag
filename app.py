@@ -3,7 +3,7 @@ from assistant_vector import create_assistant
 
 # 1. Page Configuration
 st.set_page_config(
-    page_title="Barista AI",
+    page_title="BeanRAG",
     page_icon="☕",
     layout="centered"
 )
@@ -21,14 +21,14 @@ if "messages" not in st.session_state:
 
 # Sidebar Controls
 with st.sidebar:
-    st.title("☕ Barista AI Settings")
+    st.title("☕ BeanRAG Settings")
     st.markdown("Your expert RAG assistant for coffee beans, brewing ratios, and techniques.")
     if st.button("Clear Conversation", type="secondary"):
         st.session_state.messages = []
         st.rerun()
 
 # Title Header
-st.title("☕ Barista AI - Coffee Knowledge Assistant")
+st.title("☕ Coffee Bean Knowledge Base")
 
 # 4. Render Conversation History
 for message in st.session_state.messages:

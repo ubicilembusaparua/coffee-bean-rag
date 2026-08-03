@@ -4,6 +4,7 @@ from embedder import Embedder
 import psycopg
 from dotenv import load_dotenv
 from openai import OpenAI
+from langsmith.wrappers import wrap_openai
 
 
 
@@ -17,7 +18,7 @@ def create_assistant():
     return RAGPGVector(
         embedder=model,
         conn=conn,
-        llm_client=OpenAI()
+        llm_client=wrap_openai(OpenAI())
     )
 
 if __name__ == "__main__":
