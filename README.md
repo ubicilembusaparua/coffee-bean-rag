@@ -1,8 +1,8 @@
 # ☕ Coffee Bean RAG Assistant
-
+![Coffee Reviews Architecture](./images/app-preview-2.png)
 ## What is this about?
 
-A Retrieval-Augmented Generation (RAG) application built on a [coffee bean review dataset](#) as its knowledge base. The project helps users **find the best coffee beans for their needs** and provides **personalized recommendations** based on their preferences.
+A Retrieval-Augmented Generation (RAG) application built on a [coffee bean review dataset](https://www.kaggle.com/datasets/schmoyote/coffee-reviews-dataset) as its knowledge base. The project helps users **find the best coffee beans for their needs** and provides **personalized recommendations** based on their preferences.
 
 ## Tech Stack
 
