@@ -1,15 +1,33 @@
-# Python-generated files
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Environment variables & secrets (CRITICAL)
+.env
+.env.*
+!.env.example
 
 # Virtual environments
-.venv
-.env
-*.zip
-*.ipynb
+.venv/
+venv/
+ENV/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints & caches
+.ipynb_checkpoints/
+
+# Data & local models (if large or non-versioned)
 models/
-notebooks/
