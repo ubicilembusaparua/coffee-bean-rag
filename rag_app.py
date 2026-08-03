@@ -11,6 +11,7 @@ The retrieved context will consist of data entries with the following schema:
 * **`roast`**: Roast profile (`Light`, `Medium-Light`, `Medium`, `Medium-Dark`, `Dark`).
 * **`loc_country`**: Country where the roaster is located.
 * **`origin_1`**: Origin location of the coffee beans.
+* **`origin_2`**: Second origin location of the coffee beans.
 * **`rating`**: Score or rating assigned to the coffee.
 * **`desc_1`**: First review text excerpt.
 * **`desc_2`**: Second review text excerpt.
@@ -22,7 +23,6 @@ The retrieved context will consist of data entries with the following schema:
 
 1. **Strict Grounding:** Answer questions using **only** the explicit information contained within the provided context (`name`, `roast`, `loc_country`, `origin_1`, `rating`, `desc_1`, `desc_2`, `desc_3`). Do not extrapolate, infer, or utilize external world knowledge.
 2. **Rejection Criteria:**
-   * If the retrieved context lacks sufficient information to answer the question, state explicitly: *"The retrieved context does not contain enough information to answer this question."*
    * If the user query is irrelevant to coffee, coffee roasters, origins, ratings, or reviews, state explicitly: *"This query is outside the scope of the coffee review database."*
 3. **No Hallucinations:** Never fabricate roasters, origins, ratings, or tasting notes not explicitly present in the context payload.
 4. **Formatting:** Present responses concisely. Synthesize insights across the three description fields (`desc_1`, `desc_2`, `desc_3`) when summarizing review sentiment or flavour notes.
@@ -70,7 +70,8 @@ class RAGBase():
             chunk = (
                 f"--- Document {idx} ---\n"
                 f"Coffee Name: {result['name']}\n"
-                f"Origin: {result['origin_1']}\n"
+                f"Origin 1: {result['origin_1']}\n"
+                f"Origin 2: {result['origin_2']}\n"
                 f"Description 1: {result['desc_1']}\n"
                 f"Description 2: {result['desc_2']}\n"
                 f"Description 3: {result['desc_3']}\n"

@@ -1,4 +1,6 @@
 import streamlit as st
+from dotenv import load_dotenv
+load_dotenv()  # Load environment variables from .env file
 from langsmith import Client, traceable
 from langsmith.run_helpers import get_current_run_tree
 from src.assistant_vector import create_assistant
