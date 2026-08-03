@@ -4,7 +4,6 @@ venv/
 env/
 
 # Data & Notebooks (Unless strictly needed at build time)
-dataset/
 notebooks/
 outputs/
 *.csv
