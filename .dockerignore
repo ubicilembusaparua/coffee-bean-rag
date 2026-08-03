@@ -1,0 +1,28 @@
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Data & Notebooks (Unless strictly needed at build time)
+dataset/
+notebooks/
+outputs/
+*.csv
+*.parquet
+*.json
+
+# Cache and Bytecode
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Git & IDE Metadata
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Environment Variables
+.env

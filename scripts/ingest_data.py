@@ -3,7 +3,7 @@ from minsearch import Index
 
 def load_data():
 
-    df = pd.read_csv('dataset/coffee_analysis.csv')
+    df = pd.read_csv("../data/coffee_analysis.csv")
     
     cols = df.columns.tolist()
     df.dropna(inplace=True)

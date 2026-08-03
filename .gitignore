@@ -15,3 +15,4 @@ wheels/
 *.python-version
 *.ipynb
 models/
+notebooks/
