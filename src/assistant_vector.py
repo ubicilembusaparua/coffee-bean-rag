@@ -1,6 +1,6 @@
 import sys
 from rag_app import RAGPGVector
-from embedder import Embedder
+from src.embedder import Embedder
 import psycopg
 from dotenv import load_dotenv
 from openai import OpenAI

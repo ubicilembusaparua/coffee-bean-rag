@@ -15,7 +15,6 @@ def send_feedback(run_id, score, comment=None):
     )
     st.toast("Feedback submitted! Thank you.")
 
-# 1. Wrap your custom execution logic with @traceable
 @traceable(name="Coffee Bean RAG Execution")
 def run_rag_pipeline(prompt_text):
     # Call your raw RAG code/assistant
