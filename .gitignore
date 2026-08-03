@@ -9,10 +9,7 @@ wheels/
 # Virtual environments
 .venv
 .env
-*.toml
-*.lock
 *.zip
-*.python-version
 *.ipynb
 models/
 notebooks/
