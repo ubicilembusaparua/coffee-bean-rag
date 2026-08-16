@@ -31,3 +31,4 @@ Thumbs.db
 
 # Data & local models (if large or non-versioned)
 models/
+notebooks/
